@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="img/logo/icone_santa_casa_sjc_colorido.png">
-    <title>Abertura de Chamados</title>
+    <title>Gestão de Resultados</title>
     <!--SESSION-->
     <?php 
         session_start();
@@ -19,7 +19,6 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome --> 
     <script src="https://kit.fontawesome.com/a3000fd09d.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
     <header> 
@@ -35,7 +34,7 @@
                 <div class="row justify-content-center " style="" >
                     <div class="col-10" style="border-bottom: 1px solid #e7e7e7; border-top-left-radius: 5px; border-top-right-radius: 5px;">
                         
-                        <h14>Abertura de Chamados</h14>
+                        <h14>Gestão de Resultados</h14>
 
                     </div>
                 </div>
@@ -65,6 +64,7 @@
                             </div>
                             <button type="submit" class="botao_home" style="padding-top: 14px; padding-bottom: 14px;"> <i class="fa fa-key" aria-hidden="true"></i> Acessar</button>
                         </form>
+
                         <!--MENSAGENS-->
                         <?php
                             include 'js/mensagens.php';
