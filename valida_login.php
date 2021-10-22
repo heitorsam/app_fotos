@@ -18,35 +18,20 @@
 		
 		echo $usuario;	echo '</br>'; echo $senha; echo '</br>';
 		
-		$result_usuario = oci_parse($conn_ora, "SELECT PGRME.VALIDA_SENHA_FUNC_PGR_ME(:usuario,:senha) AS RESP_LOGIN,
-												(SELECT INITCAP(usu.NM_USUARIO)
-													FROM dbasgu.USUARIOS usu
-													WHERE usu.CD_USUARIO = :usuario) AS NM_USUARIO,
-													CASE WHEN :usuario IN (SELECT DISTINCT pe.CD_USUARIO 
-																		   FROM pgrme.PERMISSAO pe
-																		   WHERE pe.TP_PERMISSAO = 'A') THEN 'S'
-													ELSE 'N'
-													END SN_ADMIN,
-													CASE
-														WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
-																			FROM dbasgu.PAPEL_USUARIOS puia
-																			WHERE puia.CD_PAPEL = 328) THEN 'S' --IMPORTAR ARQUIVOS PGR
-														ELSE 'N'
-													END SN_IMPORTA_ARQUIVOS,
-													CASE
-														WHEN :usuario IN (SELECT DISTINCT pupp.CD_USUARIO
-																			FROM dbasgu.PAPEL_USUARIOS pupp
-																			WHERE pupp.CD_PAPEL = 329) THEN 'S' --PENDENCIAS PRONTUARIO PGR
-														ELSE 'N'
-													END SN_PENDENCIAS_PRONTUARIO,
-													CASE
-														WHEN :usuario IN (SELECT DISTINCT pupp.CD_USUARIO
-																			FROM dbasgu.PAPEL_USUARIOS pupp
-																			WHERE pupp.CD_PAPEL = 330) THEN 'S' --PGR LANCAMENTOS
-														ELSE 'N'
-													END SN_LANCAMENTOS_PGR
-												FROM DUAL
-												WHERE ROWNUM = 1");																															
+		$result_usuario = oci_parse($conn_ora, "SELECT APP_FOTOS.VALIDA_SENHA_FUNC_APPLOGIN(:usuario,:senha) AS RESP_LOGIN,
+                                                       (SELECT INITCAP(usu.NM_USUARIO)
+                                                          FROM dbasgu.USUARIOS usu
+                                                         WHERE usu.CD_USUARIO = :usuario) AS NM_USUARIO,
+                                                       CASE
+                                                         WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
+                                                                             FROM dbasgu.PAPEL_USUARIOS puia
+                                                                             WHERE puia.CD_PAPEL = 342) THEN
+                                                          'S'
+                                                         ELSE
+                                                          'N'
+                                                       END SN_APP_FOTOS
+                                                  FROM DUAL
+                                                 WHERE ROWNUM = 1");																															
 												
 		oci_bind_by_name($result_usuario, ':usuario', $usuario);
 		oci_bind_by_name($result_usuario, ':senha', $senha);
@@ -63,10 +48,7 @@
 			
 			if($resultado[0] == 'Login efetuado com sucesso') {
 				$_SESSION['usuarioNome'] = $resultado[1];
-				$_SESSION['sn_admin'] = $resultado[2];
-				$_SESSION['sn_importar_arquivos'] = $resultado[3];
-				$_SESSION['sn_pendencias_prontuario'] = $resultado[4];
-				$_SESSION['sn_lancamentos_pgr'] = $resultado[5];
+				$_SESSION['sn_app_fotos'] = $resultado[2];
 				$_SESSION['usuarioLogin'] = strtoupper($usuario);	
 				header("Location: $pag_apos");
 			} else { 

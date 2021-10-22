@@ -17,14 +17,14 @@
             include 'js/mensagens_usuario.php';
         ?>
 
-        <?php if($_SESSION['APPFOTOS']=='S'){ ?>
+        <?php if($_SESSION['sn_app_fotos']=='S'){ ?>
 
              <!--TITULO-->
-            <h11><i class="fas fa-chart-line"></i> Meritocracia</h11>
+            <h11><i class="fas fa-chart-line"></i> Aplicativo Fotos</h11>
 
             <div class="div_br"> </div>
 
-            <a href="lancamentos_meritocracia_matriz.php" class="botao_home" type="submit"><i class="fas fa-paper-plane"></i> Lançamentos</a></td></tr>  
+            <a href="lancamento.php" class="botao_home" type="submit"><i class="fas fa-paper-plane"></i> Lançamentos</a></td></tr>  
             <span class="espaco_pequeno"></span>
     
             <?php if($_SESSION['sn_admin'] == 'S'){ ?>
