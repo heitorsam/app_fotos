@@ -6,6 +6,8 @@
 
     //ACESSO RESTRITO
     include 'acesso_restrito.php';
+    
+    include 'conexao.php';
 
     $var_nm_paciente_ped = NULL;
     if(@$_SESSION['S_NM_PACIENTE'] <> NUll){
@@ -36,31 +38,73 @@
         include 'js/mensagens_usuario.php';
 ?>
     
-    <div id="main" class="container-fluid">
+<div id="main" class="container-fluid ">
 
-<div class="row align-self-center">
-    <form action="sql_consulta_atd.php" method="post">
-        <div class="row">
-            <div class="input-group col-md-12">
-                <label>Atendimento:</label>
-            </div>
-            
-            <div class="input-group col-md-9">    
-            <?php if(isset($_GET['cd_atendimento']) == null){?>
-                <input type="number" class="form-control" name="ps_atendimento" required min="0" placeholder="Atendimento"></input>
-            <?php }else{ ?>
-                <input type="number" class="form-control" name="ps_atendimento" required min="0" value="<?php echo $_GET['cd_atendimento'];?>"></input>
-            <?php }; ?>
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+    <div class="row align-self-center">
+        <form action="sql_consulta_atd.php" method="post">
+            <div class="row align-self-center" style="margin-left: 0px !important; ">
+
+                <div class="input-group col-md-12">
+                    <label>Atendimento:</label>
                 </div>
+                
+                <div class="input-group col-md-9">    
+                <?php if(isset($_GET['cd_atendimento']) == null){?>
+                    <input type="number" class="form-control" name="ps_atendimento" required min="0" placeholder="Atendimento"></input>
+                <?php }else{ ?>
+                    <input type="number" class="form-control" name="ps_atendimento" required min="0" value="<?php echo $_GET['cd_atendimento'];?>"></input>
+                <?php }; ?>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="div_br"> </div>
+
+    <?php
+        if(isset($_GET['cd_atendimento']) == $_SESSION['S_CD_ATENDIMENTO']){
+    ?>
+
+    <!--DADOS USUARIO-->
+    <form action="">
+        <div class="row align-self-center" >
+            <div class="form-group col-md-2">
+                <label for="name_indicador">Código:</label>
+                <input type="text" class="form-control" name="frm_cd_usuario" 
+                style="font-size: 14px !important;"
+                value="<?php echo @$_SESSION['S_CD_ATENDIMENTO']; ?>" disabled>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="name_indicador">Nome Paciente:</label>
+                <input type="text" class="form-control" name="frm_chapa"
+                style="font-size: 14px !important;"
+                value="<?php echo @$_SESSION['S_NM_PACIENTE']; ?>" disabled>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="name_indicador">Convenio:</label>
+                <input type="text" class="form-control" name="frm_nm_usuario"
+                style="font-size: 14px !important;"
+                value="<?php echo @$_SESSION['S_NM_CONVENIO']; ?>" disabled>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="name_indicador">Tipo de Atendimento:</label>
+                <input type="text" class="form-control" name="frm_ds_funcao"
+                style="font-size: 14px !important;"
+                value="<?php echo @$_SESSION['S_DS_TP_ATENDIMENTO']; ?>" disabled>
             </div>
         </div>
     </form>
+
+    <?php
+        }
+    ?>
 </div>
-
-
-
 <?php
     //RODAPE
     include 'rodape.php';
