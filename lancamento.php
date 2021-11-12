@@ -25,7 +25,7 @@
     }    
 ?>
 
-<h11><i class="fas fa-plus"></i> Lançamento</h11>
+<h11><i class="fas fa-paper-plane"></i>Lançamento</h11>
 <span class="espaco_pequeno" style="width: 6px;" ></span>
 <h27> <a href="home.php" style="color: #444444; text-decoration: none;"> <i class="fa fa-reply" aria-hidden="true"></i> Voltar </a> </h27> 
 
@@ -66,7 +66,7 @@
     <div class="div_br"> </div>
 
     <?php
-        if(isset($_GET['cd_atendimento']) == $_SESSION['S_CD_ATENDIMENTO']){
+        if(isset($_GET['cd_atendimento']) == @$_SESSION['S_CD_ATENDIMENTO']){
     ?>
 
     <!--DADOS USUARIO-->
@@ -98,6 +98,39 @@
                 style="font-size: 14px !important;"
                 value="<?php echo @$_SESSION['S_DS_TP_ATENDIMENTO']; ?>" disabled>
             </div>
+        </div>
+    </form>
+
+     <!--DADOS USUARIO-->
+     <form action="sql_lancamento.php?cd_atendimento=<?php echo @$_SESSION['S_CD_ATENDIMENTO']; ?>" method="post" id="form_anexo" enctype="multipart/form-data">
+        <div class="row align-self-center" >
+            <div class="form-group col-md-3">
+                <label for="frm_nm_doc">Nome Documento:</label>
+                <input type="text" class="form-control" name="frm_nm_doc"
+                style="font-size: 14px !important;"
+                value="">
+            </div>
+            
+            <div class="form-group col-md-3">
+                <label for="frm_tp_doc">Tipo do documento:</label>
+                <select id="" name="">
+                    <option value="">Selecione uma opção: </option>
+                    <option value="IMAGEM">Imagem</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+            <label for="frm_doc">Arquivo:</label>
+            <input type="file" accept="image/*" id='file' name='file' required capture>
+            </div>
+            
+            <div class="form-group col-md-3">
+            <label for="name_indicador"></label>
+            <br>
+            <button class='btn btn-primary' type='submit' form='form_anexo' value='Submit'>
+				<i class='fa fa-paper-plane-o' aria-hidden='true'></i> Enviar</button>
+            </div>
+
         </div>
     </form>
 

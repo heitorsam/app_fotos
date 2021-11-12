@@ -67,12 +67,8 @@
                         <i class="fa fa-bars" aria-hidden="true"></i> Menu</a></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown06">
 
-                            <!--Menu
-                            <a class="dropdown-item" style="background-color: #f5f5f5;" href="javascript:void(0)" ><i class="fas fa-pills"></i> Medicamentos</a>-->
-
 							<a class="dropdown-item" href="home.php"><i class="fas fa-home"></i> Home</a>
-                            <a class="dropdown-item" href="config_padrao.php"><i class="fas fa-cog"></i> Config. padrão</a>
-                            <a class="dropdown-item" href="registro_chamado.php"><i class="fas fa-edit"></i> Registrar chamado</a>
+                            <a class="dropdown-item" href="config_padrao.php"><i class="fas fa-paper-plane"></i> Lançamento</a>
 
         <div class="div_br"> </div>
 
