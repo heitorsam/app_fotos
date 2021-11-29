@@ -36,7 +36,7 @@
                                                        END SN_APP_FOTOS
                                                   FROM DUAL
                                                  WHERE ROWNUM = 1");																															
-												
+		echo 'result_usuario';									
 		oci_bind_by_name($result_usuario, ':usuario', $usuario);
 		oci_bind_by_name($result_usuario, ':senha', $senha);
 

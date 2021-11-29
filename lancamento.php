@@ -108,23 +108,24 @@
                 <label for="frm_nm_doc">Nome Documento:</label>
                 <input type="text" class="form-control" name="frm_nm_doc"
                 style="font-size: 14px !important;"
-                value="">
+                value="" required>
             </div>
             
             <div class="form-group col-md-3">
                 <label for="frm_tp_doc">Tipo do documento:</label>
-                <select id="" name="">
+                <select class="form-control" id="" name="" required>
                     <option value="">Selecione uma opção: </option>
                     <option value="IMAGEM">Imagem</option>
                 </select>
             </div>
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
             <label for="frm_doc">Arquivo:</label>
-            <input type="file" accept="image/*" id='file' name='file' required capture>
+            <br>
+            <input type="file" accept="image/png, image/jpeg" id='file' name='file' required>
             </div>
             
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
             <label for="name_indicador"></label>
             <br>
             <button class='btn btn-primary' type='submit' form='form_anexo' value='Submit'>
