@@ -25,8 +25,15 @@ $result_pp_atd = oci_parse($conn_ora, $consulta_pp_atd);
 oci_execute($result_pp_atd);
 $row_pp_atd = oci_fetch_array($result_pp_atd);
 
-$var_prestador = $row_pp_atd['CD_PRESTADOR'];
+//$var_prestador = $row_pp_atd['CD_PRESTADOR'];
 $var_paciente  = $row_pp_atd['CD_PACIENTE'];
+
+$consulta_usu_pres = "SELECT U.CD_PRESTADOR FROM DBASGU.USUARIOS U WHERE U.CD_USUARIO = '$login_usuario'";
+$result_usu_pres = oci_parse($conn_ora, $consulta_usu_pres);
+oci_execute($result_usu_pres);
+$row_usu_pres = oci_fetch_array($result_usu_pres);
+
+$var_usu_prestador = $row_usu_pres['CD_PRESTADOR'];
 
 // SEQ_ARQUIVO_DOCUMENTO
 $consulta_seq_ad = "SELECT SEQ_ARQUIVO_DOCUMENTO.nextval  as SEQ_ARQUIVO_DOCUMENTO FROM DUAL";
@@ -92,7 +99,7 @@ SELECT $var_seq_pdc AS CD_DOCUMENTO_CLINICO,
        '$var_paciente' AS CD_PACIENTE, 
        $var_cd_atendimento AS CD_ATENDIMENTO,
        '$login_usuario' AS CD_USUARIO,
-       '$var_prestador' AS CD_PRESTADOR,
+       '$var_usu_prestador' AS CD_PRESTADOR,
        'FECHADO' AS TP_STATUS,
        SYSDATE AS DH_REFERENCIA,
        SYSDATE AS DH_CRIACAO,
@@ -122,12 +129,12 @@ SELECT $var_seq_aa AS CD_ARQUIVO_ATENDIMENTO,
        $var_seq_ad AS CD_ARQUIVO_DOCUMENTO,
        $var_cd_atendimento AS CD_ATENDIMENTO,
 SYSDATE AS DH_CRIACAO,
-'' AS NM_USUARIO,
+'$login_usuario' AS NM_USUARIO,
 NULL AS CD_TIPO_DOCUMENTO, 
 $var_paciente AS CD_PACIENTE,
 NULL AS CD_PW_TIPO_DOCUMENTO,
 $var_seq_pdc AS CD_DOCUMENTO_CLINICO,
-NULL AS DS_DESCRICAO,
+'teste' AS DS_DESCRICAO,
 661 AS CD_STATUS_ARQUIVO_ATENDIMENTO,
 222 AS CD_OBJETO_SELECIONADO
 FROM DUAL";

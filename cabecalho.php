@@ -9,7 +9,7 @@
     ob_start();
 
     //VARIAVEIS NOME
-    @$nome = @$_SESSION['usuarioLogin2'];
+    @$nome = @$_SESSION['usuarioNome'];
     @$pri_nome = substr(@$nome, 0, strpos(@$nome, ' '));
 
     //ACESSO RESTRITO
@@ -25,7 +25,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="img/logo/icone_santa_casa_sjc_colorido.png">
-    <title>Abertura de chamados</title>
+    <title>Fotos Feridas</title>
     <!--CSS-->
     <?php 
         include 'css/style.php';
@@ -44,7 +44,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-color">
             <a class="navbar-brand" href="home.php">
                 <img src="img/logo/icone_santa_casa_sjc_branco.png" height="28px" width="28px" class="d-inline-block align-top" alt="Santa Casa de São José dos Campos">
-                <h10>Abertura de chamados</h10>
+                <h10>Fotos Feridas</h10>
             </a>
             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown06">
 
 							<a class="dropdown-item" href="home.php"><i class="fas fa-home"></i> Home</a>
-                            <a class="dropdown-item" href="config_padrao.php"><i class="fas fa-paper-plane"></i> Lançamento</a>
+                            <a class="dropdown-item" href="lancamento.php"><i class="fas fa-paper-plane"></i> Lançamento</a>
 
         <div class="div_br"> </div>
 
@@ -87,20 +87,6 @@
                 </ul>
             </div>
         </nav>
-
-    <!--DIRETORIO-->
-    <!--<div class="diretorio">
-        <a class="diretorio_link" href="index.php"> 
-            <i class="fa fa-home" aria-hidden="true"></i> Home 
-        </a>
-        <i class="fa fa-angle-right" aria-hidden="true"></i>
-        <a class="diretorio_link" href="#"> 
-            <?php 
-            //$nome_pagina = str_replace('_',' ',$_SERVER['PHP_SELF']);
-            //echo ucwords(substr(basename($nome_pagina),0,-4)); ?>
-        </a>
-    </div>-->
-
     </header>
     
     <main>
