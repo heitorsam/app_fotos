@@ -105,16 +105,15 @@
      <form action="sql_lancamento.php?cd_atendimento=<?php echo @$_SESSION['S_CD_ATENDIMENTO']; ?>" method="post" id="form_anexo" enctype="multipart/form-data">
         <div class="row align-self-center" >
             <div class="form-group col-md-3">
-                <label for="frm_nm_doc">Nome Documento:</label>
-                <input type="text" class="form-control" name="frm_nm_doc"
+                <label for="frm_ds_doc">Descrição Documento:</label>
+                <input type="text" class="form-control" name="frm_ds_doc"
                 style="font-size: 14px !important;"
                 value="" required>
             </div>
             
             <div class="form-group col-md-3">
                 <label for="frm_tp_doc">Tipo do documento:</label>
-                <select class="form-control" id="" name="" required>
-                    <option value="">Selecione uma opção: </option>
+                <select class="form-control" id="frm_tp_doc" name="frm_tp_doc" required>
                     <option value="IMAGEM">Imagem</option>
                 </select>
             </div>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 //require_once('acesso_restrito.php');?>
 
 <?php
@@ -6,6 +7,10 @@ include_once("conexao.php");
 
 //INFORMACOES DO USUARIO
 @$login_usuario = $_SESSION['usuarioLogin'];
+
+//POST
+@$var_frm_tp_doc = $_POST['frm_tp_doc'];
+@$var_frm_ds_doc = $_POST['frm_ds_doc'];
 
 //RECEBENDO AVISO DE CIRURGIA
 @$var_cd_atendimento = filter_input(INPUT_GET, 'cd_atendimento', FILTER_SANITIZE_STRING);
@@ -20,7 +25,7 @@ $extensao_arquivo = strrchr( $nome_arquivo, '.' );
 //DECLARANDO VARIAVEIS DO ARQUIVO PARA IMPORTACAO PARA O BANCO
 $image = file_get_contents($_FILES['file']['tmp_name']);
 
-$consulta_pp_atd = "SELECT a.CD_PACIENTE,a.CD_PRESTADOR FROM ATENDIME A WHERE A.CD_ATENDIMENTO = $var_cd_atendimento";
+$consulta_pp_atd = "SELECT a.CD_PACIENTE FROM ATENDIME A WHERE A.CD_ATENDIMENTO = $var_cd_atendimento";
 $result_pp_atd = oci_parse($conn_ora, $consulta_pp_atd);
 oci_execute($result_pp_atd);
 $row_pp_atd = oci_fetch_array($result_pp_atd);
@@ -28,12 +33,13 @@ $row_pp_atd = oci_fetch_array($result_pp_atd);
 //$var_prestador = $row_pp_atd['CD_PRESTADOR'];
 $var_paciente  = $row_pp_atd['CD_PACIENTE'];
 
-$consulta_usu_pres = "SELECT U.CD_PRESTADOR FROM DBASGU.USUARIOS U WHERE U.CD_USUARIO = '$login_usuario'";
+echo $consulta_usu_pres = "SELECT U.CD_PRESTADOR FROM DBASGU.USUARIOS U WHERE U.CD_USUARIO = '$login_usuario'";
 $result_usu_pres = oci_parse($conn_ora, $consulta_usu_pres);
 oci_execute($result_usu_pres);
 $row_usu_pres = oci_fetch_array($result_usu_pres);
 
 $var_usu_prestador = $row_usu_pres['CD_PRESTADOR'];
+echo $var_usu_prestador;
 
 // SEQ_ARQUIVO_DOCUMENTO
 $consulta_seq_ad = "SELECT SEQ_ARQUIVO_DOCUMENTO.nextval  as SEQ_ARQUIVO_DOCUMENTO FROM DUAL";
@@ -97,7 +103,7 @@ SELECT $var_seq_pdc AS CD_DOCUMENTO_CLINICO,
        2 AS CD_TIPO_DOCUMENTO, 
        NULL AS CD_DOCUMENTO_DIGITAL,
        '$var_paciente' AS CD_PACIENTE, 
-       $var_cd_atendimento AS CD_ATENDIMENTO,
+       '$var_cd_atendimento' AS CD_ATENDIMENTO,
        '$login_usuario' AS CD_USUARIO,
        '$var_usu_prestador' AS CD_PRESTADOR,
        'FECHADO' AS TP_STATUS,
@@ -105,7 +111,7 @@ SELECT $var_seq_pdc AS CD_DOCUMENTO_CLINICO,
        SYSDATE AS DH_CRIACAO,
        SYSDATE AS DH_FECHAMENTO,
        NULL AS DH_IMPRESSO,
-       'IMAGEM' AS TP_EXTENSAO,
+       '$var_frm_tp_doc' AS TP_EXTENSAO,
        NULL AS CD_SETOR,
        222 As CD_OBJETO,
        NULL AS CD_DOCUMENTO_CANCELADO,
@@ -124,6 +130,8 @@ SELECT $var_seq_pdc AS CD_DOCUMENTO_CLINICO,
 $result_insert_pdc = oci_parse($conn_ora, $consulta_insert_pdc);
 oci_execute($result_insert_pdc);
 
+echo $consulta_insert_pdc;
+
 $consulta_insert_AA = "INSERT INTO dbamv.ARQUIVO_ATENDIMENTO
 SELECT $var_seq_aa AS CD_ARQUIVO_ATENDIMENTO,
        $var_seq_ad AS CD_ARQUIVO_DOCUMENTO,
@@ -134,7 +142,7 @@ NULL AS CD_TIPO_DOCUMENTO,
 $var_paciente AS CD_PACIENTE,
 NULL AS CD_PW_TIPO_DOCUMENTO,
 $var_seq_pdc AS CD_DOCUMENTO_CLINICO,
-'teste' AS DS_DESCRICAO,
+'$var_frm_ds_doc' AS DS_DESCRICAO,
 661 AS CD_STATUS_ARQUIVO_ATENDIMENTO,
 222 AS CD_OBJETO_SELECIONADO
 FROM DUAL";
