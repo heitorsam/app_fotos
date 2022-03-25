@@ -4,8 +4,10 @@
     
     </main>
 
-    <!--RODAPE -->
+    
+        <!--RODAPE
     <footer class="footer-bs">
+
         <div class="row">
         	<div class="col-md-5 footer-brand animated fadeInLeft">
             
@@ -42,13 +44,15 @@
             </div>
         </div>
 
+         </footer>
+        -->
 
     <!--SUBIR AO TOPO-->
     <a id="subirTopo">
         <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
     </a>
 
-    </footer>
+   
 
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

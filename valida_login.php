@@ -22,14 +22,14 @@
 		
 		echo $usuario;	echo '</br>'; echo $senha; echo '</br>';
 		
-		$result_usuario = oci_parse($conn_ora, "SELECT dbamv.VALIDA_SENHA_FUNC_APPLOGIN(:usuario,:senha) AS RESP_LOGIN,
+		$result_usuario = oci_parse($conn_ora, "SELECT appfotos.VALIDA_SENHA_FUNC_APP_FOTOS(:usuario,:senha) AS RESP_LOGIN,
                                                        (SELECT INITCAP(usu.NM_USUARIO)
                                                           FROM dbasgu.USUARIOS usu
                                                          WHERE usu.CD_USUARIO = :usuario) AS NM_USUARIO,
                                                        CASE
                                                          WHEN :usuario IN (SELECT DISTINCT puia.CD_USUARIO
                                                                              FROM dbasgu.PAPEL_USUARIOS puia
-                                                                             WHERE puia.CD_PAPEL = 340) THEN
+                                                                             WHERE puia.CD_PAPEL = 342) THEN
                                                           'S'
                                                          ELSE
                                                           'N'
