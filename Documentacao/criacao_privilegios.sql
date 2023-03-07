@@ -9,6 +9,11 @@ GRANT CREATE SEQUENCE TO appfotos;
 
 GRANT EXECUTE ON dbasgu.FNC_MV2000_HMVPEP TO appfotos;
 
+
+GRANT SELECT ON portal_projetos.SEQ_CD_ACESSO TO appfotos;
+
+GRANT INSERT ON portal_projetos.ACESSO TO appfotos;
+
 GRANT SELECT ON dbasgu.USUARIOS TO appfotos;
 GRANT SELECT ON dbasgu.PAPEL_USUARIOS TO appfotos;
 GRANT SELECT ON dbamv.ATENDIME TO appfotos;
